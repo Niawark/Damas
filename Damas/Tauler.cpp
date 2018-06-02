@@ -548,57 +548,25 @@ bool Tauler::movimentNormalDama(int filaorigen, int columnaorigen, int filadesti
 
 	aux = IdentificaMovimentDama(filaorigen, columnaorigen, filadesti, columnadesti, torn);
 
-	if (aux == 1&&torn==TORN_NEGRE)
+	if (aux == 1 || aux == 3 || aux == 5||aux==7)
 	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 222;
-		move = true;
+		if (m_tauler[filadesti - 1][columnadesti - 1] == 1111)
+		{
+			m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
+			m_tauler[filadesti - 1][columnadesti - 1] = 111;
+			move = true;
+		}
 	}
 	else
 	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 111;
-		move = true;
+		if (m_tauler[filadesti - 1][columnadesti - 1] == 2222)
+		{
+			m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
+			m_tauler[filadesti - 1][columnadesti - 1] = 222;
+			move = true;
+		}
 	}
 
-	if (aux == 3&&torn==TORN_NEGRE)//abajo izq
-	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 222;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 111;
-		move = true;
-	}
-
-	if (aux == 5&&torn==TORN_NEGRE)
-	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 222;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
-		move = true;
-	}
-
-	if (aux == 7&&torn==TORN_NEGRE)
-	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[filadesti-1][columnadesti - 1] = 222;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
-		move = true;
-	}
 
 	if (move == true)
 	{
@@ -617,73 +585,34 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	int aux = 0;
 	aux = IdentificaMovimentDama(filaorigen, columnaorigen, filadesti, columnadesti, torn);
 
-	if (aux == 2 && torn == TORN_NEGRE)
+	if (aux == 2 || aux == 4 || aux == 6 || aux == 7)
 	{
-		m_tauler[filaorigen-1][columnaorigen-1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 111;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
-		move = true;
-	}
-
-	if (aux == 4 && torn == TORN_NEGRE)
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
-		move = true;
+		if (m_tauler[filaorigen - 1][columnaorigen - 1] == 1111)
+		{
+			m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
+			m_tauler[m_caselladiagx][m_caselladiagy] = 0;
+			m_tauler[filadesti - 1][columnadesti - 1] = 111;
+			move = true;
+		}
+		else
+		{
+			if (m_tauler[filaorigen - 1][columnaorigen - 1] == 2222)
+			{
+				m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
+				m_tauler[m_caselladiagx][m_caselladiagy] = 0;
+				m_tauler[filadesti - 1][columnadesti - 1] = 222;
+				move = true;
+			}
+		}
 	}
 
-	if (aux == 6 && torn == TORN_NEGRE)
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
-		move = true;
-	}
-
-	if (aux == 8 && torn == TORN_NEGRE)
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
-		move = true;
-	}
-	else
-	{
-		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
-		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
-		move = true;
-	}
-
-	if (move == true)
-	{
-		columnaorigen = 0;
-		columnadesti = 0;
-		filaorigen = 0;
-		filadesti = 0;
-	}
+		if (move == true)
+		{
+			columnaorigen = 0;
+			columnadesti = 0;
+			filaorigen = 0;
+			filadesti = 0;
+		}
 	
 
 	return move;
