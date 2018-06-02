@@ -67,7 +67,7 @@ public:
 	bool DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn);
 	void getDamesblanques(int &x);
 	void getDamesnegres(int &y);
-	int lecturaMoviments(string nomfitxer);
+	int lecturaMoviments();
 	void iniciautoMoviments(int i, int torn);
 
 private:
@@ -78,7 +78,7 @@ private:
 	int m_caselladiagy;
 	int m_damasblancas;
 	int m_damasnegras;
-	int nMov;
+	int Mov;
 	Sprite tablero;
 	Sprite piezablanca;
 	Sprite piezanegra;
@@ -92,4 +92,3 @@ private:
 	Sprite turnonegro;
 	Sprite aviso;
 };
-
