@@ -1,11 +1,2 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  Tauler.cpp
-c:\users\anaag\desktop\practica mp\damasalumnos\damas\tauler.cpp(148): warning C4101: 'y': variable local sin referencia
-  Generando código...
-  Compilando...
-  Partida.cpp
-  Moviment.cpp
-  Joc.cpp
-  Generando código...
-  Damas.vcxproj -> C:\Users\anaag\Desktop\Practica MP\DamasAlumnos\\Program\Damas.exe
-  Damas.vcxproj -> C:\Users\anaag\Desktop\Practica MP\DamasAlumnos\\Program\Damas.pdb (Full PDB)
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Enterprise\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
+  Damas.vcxproj -> C:\Users\nicof\source\repos\Damas\\Program\Damas.exe

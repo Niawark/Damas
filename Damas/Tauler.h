@@ -68,6 +68,7 @@ public:
 	void getDamesblanques(int &x);
 	void getDamesnegres(int &y);
 	int lecturaMoviments(string nomfitxer);
+	//int open_read_file(string readfile);
 	void iniciautoMoviments(int i, int torn);
 
 private:
