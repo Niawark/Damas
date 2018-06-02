@@ -972,7 +972,7 @@ bool Tauler::DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int 
 
 	////////////////////////////////////////////////////////normal
 
-	if (aux == 1 || aux == 3 || aux == 5 || aux == 7)
+	if (aux == 1 || aux == 3 || aux == 5 || aux == 7|| aux == 2 || aux == 4 || aux == 6 || aux == 8)
 	{
 		if (cont == 0)
 		{
