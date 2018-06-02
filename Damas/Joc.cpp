@@ -26,17 +26,17 @@ void Pintartaulell(int tauler[8][8])
 	Sprite pecanegra;
 	int fila = INIPANTALLAX;
 	int columna = INIPANTALLAY;
-
+	
 	pecanegra.create("data/fitxa_negra.png");
 	pecablanca.create("data/fitxa_blanca.png");
-
-	for (int i = 0; i < 8; i++)
+	
+	for (int i=0; i < 8; i++)
 	{
-		for (int j = 0; j < 8; j++)
+		for (int j=0; j < 8; j++)
 		{
 			if (tauler[i][j] == 1)
 			{
-				pecablanca.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+				pecablanca.draw(j*MIDACASELLA+INIPANTALLAX, i*MIDACASELLA+INIPANTALLAY);
 			}
 			else
 			{
@@ -58,28 +58,28 @@ void Pintartaulell(int tauler[8][8])
 void joc()
 {
 	// ********************************************
-	// Inicialització de la part gràfica del joc
+	// InicialitzaciÃ³ de la part grÃ fica del joc
 	// *******************************************
 	//Inicialitza Part grafica
 	Screen jocLib(MIDAX, MIDAY);
 	Partida p;
 
-	// AFEGIR CODI: Definició del grafic del fons
+	// AFEGIR CODI: DefiniciÃ³ del grafic del fons
 	Sprite fons;
 	fons.create("data/tauler.png");
 
 	//Mostrem finestra
 	jocLib.show();
-
-
-	// AFEGIR CODI: inicialització de la partida
+	
+	
+	// AFEGIR CODI: inicialitzaciÃ³ de la partida
 	p.inicialitza();
-
-	// Variables d'ajuda per agafar posició ratolí
+	
+	// Variables d'ajuda per agafar posiciÃ³ ratolÃ­
 
 	int xMouse = 0;
 	int yMouse = 0;
-
+	
 	do
 	{
 		jocLib.processEvents();
@@ -88,23 +88,23 @@ void joc()
 		{
 			xMouse = Mouse_getX();
 			yMouse = Mouse_getY();
+		
+				p.processaClick(xMouse, yMouse);
 
-			p.processaClick(xMouse, yMouse);
+				if (p.getclic() == 2)
+				{
+					p.ferMoviment();
+					p.contador();
+				}
 
-			if (p.getclic() == 2)
-			{
-				p.ferMoviment();
-				p.contador();
-			}
-
-
-
-			p.canviaTorn();
-
+			
+	
+			p.canviaTorn();		
+			
 		}
 
 		p.visualitza();
-
+		
 		// Actualitza la pantalla
 		jocLib.update();
 		// ***********************************************************************
