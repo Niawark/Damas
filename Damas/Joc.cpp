@@ -58,72 +58,28 @@ void Pintartaulell(int tauler[8][8])
 void joc()
 {
 	// ********************************************
-	// Inicialització de la part gràfica del joc
+	// InicialitzaciÃ³ de la part grÃ fica del joc
 	// *******************************************
 	//Inicialitza Part grafica
 	Screen jocLib(MIDAX, MIDAY);
-	
-	//Mostrem finestra
-	jocLib.show();
-	// AFEGIR CODI: Definició del grafic del fons
+	Partida p;
+
+	// AFEGIR CODI: DefiniciÃ³ del grafic del fons
 	Sprite fons;
 	fons.create("data/tauler.png");
-	// AFEGIR CODI: Definició i inicialització de la matriu que representarà
-	// les caselles al tauler
-	Tauler t;
-	Partida p;
-	//t.inicialitza();
+
+	//Mostrem finestra
+	jocLib.show();
+	
+	
+	// AFEGIR CODI: inicialitzaciÃ³ de la partida
 	p.inicialitza();
 	
-	// Variables d'ajuda per agafar posició ratolí
+	// Variables d'ajuda per agafar posiciÃ³ ratolÃ­
 
 	int xMouse = 0;
 	int yMouse = 0;
-	/*
-	int filaorigen = 0;
-	int columnaorigen = 0;
-	int filadesti = 0;
-	int columnadesti = 0;
-	int torn = 1;
-	int clic = 0;
-	bool missatge = false;
-	*/
-
-	/*
-	do 
-	{
-		jocLib.processEvents();
-
-		if (Mouse_getButLeft())
-		{
-			xMouse = Mouse_getX();
-			yMouse = Mouse_getY();
-
-			if (clic == 0)
-			{
-				if ((t.validaClick(xMouse, yMouse, filaorigen, columnaorigen) == true) && (t.checkOrigenValid(filaorigen, columnaorigen, torn) == true))
-				{
-					t.marcaCasella(filaorigen, columnaorigen, torn);
-					clic++;
-				}
-			}
-			else
-			{
-				if (clic == 1)
-				{
-					if (t.validaClick(xMouse, yMouse, filadesti, columnadesti) == true)
-					{
-						t.processaMoviment(filaorigen, columnaorigen, filadesti, columnadesti, torn);
-						clic = 0;
-					}
-					else
-					{
-						clic = 0;
-					}
-				}
-			}
-		}
-		*/
+	
 	do
 	{
 		jocLib.processEvents();
@@ -132,11 +88,9 @@ void joc()
 		{
 			xMouse = Mouse_getX();
 			yMouse = Mouse_getY();
-			//do {
+		
 				p.processaClick(xMouse, yMouse);
 
-				//cout << p.getclic()<<endl;
-			//} while (p.getclic() < 1);
 				if (p.getclic() == 2)
 				{
 					p.ferMoviment();
@@ -144,13 +98,11 @@ void joc()
 				}
 
 			
-			//p.setClick();
+	
 			p.canviaTorn();		
 			
 		}
 
-		// Pintem fons i peces
-		//t.dibuixa(torn, missatge);
 		p.visualitza();
 		
 		// Actualitza la pantalla
