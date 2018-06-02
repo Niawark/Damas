@@ -31,7 +31,7 @@ void Tauler::inicialitza()
 		m_tauler[6][j] = 1;
 		m_tauler[7][j - 1] = 1;
 	}
-	//lecturaMoviments();
+
 
 	//sprites necessaris
 	tablero.create("data/tauler.png");
@@ -616,18 +616,18 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	int aux = 0;
 	aux = IdentificaMovimentDama(filaorigen, columnaorigen, filadesti, columnadesti, torn);
 
-	if (aux == 2&&torn==TORN_NEGRE)
+	if (aux == 2 && torn == TORN_NEGRE)
 	{
 		m_tauler[filaorigen-1][columnaorigen-1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti-1][columnadesti-1] = 222;
+		m_tauler[filadesti-1][columnadesti-1] = 111;
 		move = true;
 	}
 	else
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
+		m_tauler[filadesti - 1][columnadesti - 1] = 222;
 		move = true;
 	}
 
@@ -635,14 +635,14 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
+		m_tauler[filadesti - 1][columnadesti - 1] = 111;
 		move = true;
 	}
 	else
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
+		m_tauler[filadesti - 1][columnadesti - 1] = 222;
 		move = true;
 	}
 
@@ -650,14 +650,14 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
+		m_tauler[filadesti - 1][columnadesti - 1] = 111;
 		move = true;
 	}
 	else
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
+		m_tauler[filadesti - 1][columnadesti - 1] = 222;
 		move = true;
 	}
 
@@ -665,14 +665,14 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 222;
+		m_tauler[filadesti - 1][columnadesti - 1] = 111;
 		move = true;
 	}
 	else
 	{
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
-		m_tauler[filadesti - 1][columnadesti - 1] = 111;
+		m_tauler[filadesti - 1][columnadesti - 1] = 222;
 		move = true;
 	}
 
@@ -890,12 +890,7 @@ bool Tauler::DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int 
 	
 
 	aux = IdentificaMovimentDama(filaorigen, columnaorigen, filadesti, columnadesti, torn);
-	if ((aux == 1 && (filadesti-1==filaorigen-2)&&(columnadesti-1==columnaorigen)) || (aux == 3&&(filadesti-1==filaorigen)&&(columnadesti-1==columnaorigen)) || (aux == 5&&(filadesti - 1 == filaorigen - 2)&&(columnadesti-1==columnaorigen))|| (aux == 7&& (filadesti - 1 == filaorigen) && (columnadesti - 1 == columnaorigen)))
-	{
-		////comprovar
-	}
-	else
-	{
+	
 		if (aux == 1 || aux == 2)//arriba izq
 		{
 			i = 0;
@@ -967,7 +962,7 @@ bool Tauler::DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int 
 				}
 			}
 		}
-	}
+	
 
 
 	////////////////////////////////////////////////////////normal
@@ -1001,25 +996,27 @@ void Tauler::getDamesnegres(int &x)
 	 x= m_damasnegras;
 }
 
-int Tauler::lecturaMoviments(string nomfitxer)
+int Tauler::lecturaMoviments()
 {
 	std::ifstream fitxer;
 	// Variable per guardar el nom del fitxer
-	std::string nomFitxer = "data/MatriuMoviments.txt";
+	std::string nomFitxer = "MatriuMoviments.txt";
+
 	fitxer.open(nomFitxer);
 	if (fitxer.is_open())
 	{
-		int fo, co, fd, cd;
-		fitxer >> nMov;
-		mov = new Moviment[nMov];
-		//fitxer >> numero;
-		for (int i = 0; i < nMov; i++) {
-			fitxer >> fo >> co >> fd >> cd;
-			mov[i].inicialitza(fo, co, fd, cd);
+		int filo, colo, fild, cold;
+		fitxer >> Mov;
+		mov = new Moviment[Mov];
+		
+		for (int i = 0; i < Mov; i++) 
+		{
+			fitxer >> filo >> colo >> fild >> cold;
+			mov[i].inicialitza(filo, colo, fild, cold);
 		}
 		fitxer.close();
 	}
-	return nMov;
+	return Mov;
 }
 
 void Tauler::iniciautoMoviments(int i, int torn) 
@@ -1035,6 +1032,5 @@ void Tauler::iniciautoMoviments(int i, int torn)
 	{
 		processaMoviment(filaorigen, columnaorigen, filadesti, columnadesti, torn);
 	}
-
 }
 
