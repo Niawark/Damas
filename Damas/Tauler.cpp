@@ -23,13 +23,13 @@ void Tauler::inicialitza()
 
 	for (int j = 1; j < 8; j += 2)
 	{
-		m_tauler[0][j] = 2;
-		m_tauler[1][j - 1] = 2;
-		m_tauler[2][j] = 2;
+		m_tauler[0][j] = 222;
+		m_tauler[1][j - 1] = 222;
+		m_tauler[2][j] = 222;
 
-		m_tauler[5][j - 1] = 1;
-		m_tauler[6][j] = 1;
-		m_tauler[7][j - 1] = 1;
+		m_tauler[5][j - 1] = 111;
+		m_tauler[6][j] = 111;
+		m_tauler[7][j - 1] = 111;
 	}
 
 
@@ -52,6 +52,7 @@ void Tauler::inicialitza()
 	m_damasblancas=0;
 	m_damasnegras=0;
 
+	//lecturaMoviments();
 }
 
 
@@ -1000,7 +1001,7 @@ int Tauler::lecturaMoviments()
 {
 	std::ifstream fitxer;
 	// Variable per guardar el nom del fitxer
-	std::string nomFitxer = "MatriuMoviments.txt";
+	std::string nomFitxer = "data/MatriuMoviments.txt";
 
 	fitxer.open(nomFitxer);
 	if (fitxer.is_open())

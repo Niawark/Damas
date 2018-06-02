@@ -79,7 +79,7 @@ void Partida::processaClick(int xMouse, int yMouse)
 
 int Partida::ferMoviment()
 {
-	int x = 0;
+ 	int x = 0;
 
 	x = m_obj.processaMoviment(m_filaorigen, m_columnaorigen, m_filadesti, m_columnadesti, m_torn_actual);
 
