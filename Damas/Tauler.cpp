@@ -46,8 +46,6 @@ void Tauler::inicialitza()
 	piezanegra_dama_sel.create("data/dama_negra_sel.png");
 	turnoblanco.create("data/torn_blanc.png");
 	turnonegro.create("data/torn_negre.png");
-	win_white.create("data/ganan_white.png");
-	win_black.create("data/ganan_black.png");
 
 	m_caselladiagx = 0;
 	m_caselladiagy = 0;
@@ -56,6 +54,9 @@ void Tauler::inicialitza()
 	m_fitxes_negras = 2;
 	//m_fitxes_negras = 12;
 
+	win_white.create("data/ganan_white.png");
+	win_black.create("data/ganan_black.png");
+	frame1.create("data/frame1.png");
 }
 
 
@@ -227,80 +228,82 @@ int Tauler::processaMoviment(int filaorigen, int columnaorigen, int filadesti, i
 
 void Tauler::dibuixa(int torn, bool missatge)
 {
-	tablero.draw(0, 0);
+	if (!guanyador()) {
+		tablero.draw(0, 0);
 
 
-	if (torn == TORN_BLANC)
-	{
-		turnoblanco.draw(POSICIO_TORN_X, POSICIO_TORN_Y);
-	}
-	else
-	{
-		if (torn == TORN_NEGRE)
+		if (torn == TORN_BLANC)
 		{
-			turnonegro.draw(POSICIO_TORN_X, POSICIO_TORN_Y);
+			turnoblanco.draw(POSICIO_TORN_X, POSICIO_TORN_Y);
+		}
+		else
+		{
+			if (torn == TORN_NEGRE)
+			{
+				turnonegro.draw(POSICIO_TORN_X, POSICIO_TORN_Y);
+			}
+
 		}
 
-	}
-
-	if (missatge == true)
-	{
-		aviso.draw(POSICIO_AVIS_X, POSICIO_AVIS_Y);
-	}
-
-
-	int fila = INIPANTALLAX;
-	int columna = INIPANTALLAY;
-
-	for (int i = 0; i < 8; i++)
-	{
-		for (int j = 0; j < 8; j++)
+		if (missatge == true)
 		{
-			if (m_tauler[i][j] == 1)
+			aviso.draw(POSICIO_AVIS_X, POSICIO_AVIS_Y);
+		}
+
+
+		int fila = INIPANTALLAX;
+		int columna = INIPANTALLAY;
+
+		for (int i = 0; i < 8; i++)
+		{
+			for (int j = 0; j < 8; j++)
 			{
-				piezablanca.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
-			}
-			else
-			{
-				if (m_tauler[i][j] == 2)
+				if (m_tauler[i][j] == 1)
 				{
-					piezanegra.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+					piezablanca.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 				}
 				else
 				{
-					if (m_tauler[i][j] == 11)
+					if (m_tauler[i][j] == 2)
 					{
-						piezablanca_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+						piezanegra.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 					}
 					else
 					{
-						if (m_tauler[i][j] == 22)
+						if (m_tauler[i][j] == 11)
 						{
-							piezanegra_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+							piezablanca_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 						}
 						else
 						{
-							if (m_tauler[i][j] == 111)
+							if (m_tauler[i][j] == 22)
 							{
-								piezablanca_dama.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+								piezanegra_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 							}
 							else
 							{
-								if (m_tauler[i][j] == 222)
+								if (m_tauler[i][j] == 111)
 								{
-									piezanegra_dama.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+									piezablanca_dama.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 								}
 								else
 								{
-									if (m_tauler[i][j] == 1111)
+									if (m_tauler[i][j] == 222)
 									{
-										piezablanca_dama_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+										piezanegra_dama.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
 									}
 									else
 									{
-										if (m_tauler[i][j] == 2222)
+										if (m_tauler[i][j] == 1111)
 										{
-											piezanegra_dama_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+											piezablanca_dama_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+										}
+										else
+										{
+											if (m_tauler[i][j] == 2222)
+											{
+												piezanegra_dama_sel.draw(j*MIDACASELLA + INIPANTALLAX, i*MIDACASELLA + INIPANTALLAY);
+											}
 										}
 									}
 								}
@@ -308,11 +311,11 @@ void Tauler::dibuixa(int torn, bool missatge)
 						}
 					}
 				}
+				columna += MIDACASELLA;
 			}
-			columna += MIDACASELLA;
+			fila += MIDACASELLA;
+			columna = INIPANTALLAY;
 		}
-		fila += MIDACASELLA;
-		columna = INIPANTALLAY;
 	}
 }
 
@@ -811,4 +814,48 @@ void Tauler::iniciautoMoviments(int i, int torn)
 		processaMoviment(filaorigen, columnaorigen, filadesti, columnadesti, torn);
 	}
 
+}
+
+
+
+bool Tauler::end_game()
+{
+	if (get_m_fitxes_negras() == 0 || get_m_fitxes_blanques() == 0) {
+		//printf("ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
+		return true;
+	}
+	//printf("no ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
+	return false;
+}
+
+bool Tauler::guanyador()
+{	
+	int n = 0;
+	if (get_m_fitxes_negras() == 0)
+	{
+		frame1.draw(0, 0);
+		while (n <= 1000000)
+			n++;
+		if (n >= 1000000)
+		{
+			win_white.draw(0, 0);
+			//printf("Guanya Blanques \n");
+		}
+		printf("Ganan Blancas\n");
+		return true;
+	}
+	else if (get_m_fitxes_blanques() == 0)
+	{
+		frame1.draw(0, 0);
+		while (n <= 1000000)
+			n++;
+		if (n >= 1000000)
+		{
+			win_black.draw(0, 0);
+			//printf("Guanya Blanques \n");
+		}
+		printf("Ganan Negras\n");
+		return true;
+	}
+	return false;
 }

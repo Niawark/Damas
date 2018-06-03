@@ -170,37 +170,3 @@ int Partida::getclic()
 void Partida::setClick() {
 	m_clic = 0;
 }
-
-bool Partida::end_game()
-{
-	if (m_obj.get_m_fitxes_negras() == 0 || m_obj.get_m_fitxes_blanques() == 0){
-		//printf("ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
-		return true;
-	}
-	//printf("no ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
-	return false;
-}
-
-Sprite Partida::guanyador()
-{
-	if (m_obj.get_m_fitxes_negras() == 0)
-	{
-			frame1.draw(0, 0);
-			while (n <= 1000000)
-				n++;
-			if (n >= 1000000)
-			{
-				gblancas.draw(0, 0);
-				//printf("Guanya Blanques \n");
-				t = true;
-			}
-		}
-		printf("Ganan Blancas\n");
-		return m_obj.get_guanyador("white");
-	}
-	else
-	{
-		printf("Ganan Negras\n");
-		return m_obj.get_guanyador("black");
-	}
-}

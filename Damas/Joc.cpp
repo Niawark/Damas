@@ -104,8 +104,5 @@ void joc()
 		// ***********************************************************************
 		// Sortim del bucle si pressionem ESC
 		// ***********************************************************************
-	} while (!p.end_game() && !Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
-	Sprite missatge_guanyador = p.guanyador();
-	missatge_guanyador.draw(8, 8);
-
+	} while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
 }

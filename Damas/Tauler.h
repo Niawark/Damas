@@ -69,7 +69,9 @@ public:
 	void iniciautoMoviments(int i, int torn);
 	int get_m_fitxes_blanques() { return m_fitxes_blanques; }
 	int get_m_fitxes_negras() { return m_fitxes_negras; }
-	Sprite get_guanyador(string guanyador) {if (guanyador == "black") { return win_black; } return win_white; }
+	bool end_game(), guanyador();
+	Sprite win_white, win_black, frame1;
+
 private:
 
 	Moviment *mov;
@@ -91,6 +93,4 @@ private:
 	Sprite turnoblanco;
 	Sprite turnonegro;
 	Sprite aviso;
-	Sprite win_white;
-	Sprite win_black;
 };
