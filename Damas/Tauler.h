@@ -71,6 +71,7 @@ public:
 	int get_m_fitxes_negras() { return m_fitxes_negras; }
 	bool end_game(), guanyador();
 	Sprite win_white, win_black, frame1;
+	void return_to_menu();
 
 private:
 

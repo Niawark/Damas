@@ -20,6 +20,23 @@ void getPosMatrix(int x, int y, int(&fila), int(&columna))
 	printf("Columna Fila %d %d \n", fila, columna);
 }
 
+void joc(char x)
+{
+	switch (x)
+	{
+	case '1':
+		joc();
+		break;
+	case '2':
+		////falta guardar
+		break;
+	case '3':
+		!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE);
+		break;
+	}
+
+}
+
 void Pintartaulell(int tauler[8][8])
 {
 	Sprite pecablanca;

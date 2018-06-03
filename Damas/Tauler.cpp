@@ -317,6 +317,11 @@ void Tauler::dibuixa(int torn, bool missatge)
 			columna = INIPANTALLAY;
 		}
 	}
+	else {
+		int n = 0;
+		while (n <= 1000000) n++;
+		return_to_menu();
+	}
 }
 
 void Tauler::desmCasella(int fila, int columna, int torn)
@@ -838,10 +843,11 @@ bool Tauler::guanyador()
 			n++;
 		if (n >= 1000000)
 		{
+			n = 0;
 			win_white.draw(0, 0);
+			while (n <= 1000000) n++;
 			//printf("Guanya Blanques \n");
 		}
-		printf("Ganan Blancas\n");
 		return true;
 	}
 	else if (get_m_fitxes_blanques() == 0)
@@ -851,11 +857,24 @@ bool Tauler::guanyador()
 			n++;
 		if (n >= 1000000)
 		{
+			n = 0;
 			win_black.draw(0, 0);
+			while (n <= 1000000) n++;
 			//printf("Guanya Blanques \n");
 		}
-		printf("Ganan Negras\n");
 		return true;
 	}
 	return false;
+}
+
+void Tauler::return_to_menu() {
+	char opcio;
+	do {
+		printf("1.Partida normal\n");
+		printf("2.Guardar partida\n");
+		printf("3.Sortir\n");
+		opcio = _getch();
+	} while ((opcio < '1') || (opcio > '3'));
+	if (opcio != '3')
+		joc(opcio);
 }
