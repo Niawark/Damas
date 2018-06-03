@@ -185,6 +185,16 @@ Sprite Partida::guanyador()
 {
 	if (m_obj.get_m_fitxes_negras() == 0)
 	{
+			frame1.draw(0, 0);
+			while (n <= 1000000)
+				n++;
+			if (n >= 1000000)
+			{
+				gblancas.draw(0, 0);
+				//printf("Guanya Blanques \n");
+				t = true;
+			}
+		}
 		printf("Ganan Blancas\n");
 		return m_obj.get_guanyador("white");
 	}
