@@ -15,8 +15,8 @@ public:
 	int ferMoviment();
 	void setClick();
 	bool m_siguiente_turno;
-	bool verificaFitxes();
-	void contador();
+	Sprite guanyador();
+	bool end_game();
 	
    
 private:

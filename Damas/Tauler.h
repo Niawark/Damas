@@ -65,19 +65,19 @@ public:
 	void desmCasella(int fila, int columna,int torn);
 	int IdentificaMovimentDama(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn);
 	bool DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn);
-	void getDamesblanques(int &x);
-	void getDamesnegres(int &y);
 	int lecturaMoviments();
 	void iniciautoMoviments(int i, int torn);
-
+	int get_m_fitxes_blanques() { return m_fitxes_blanques; }
+	int get_m_fitxes_negras() { return m_fitxes_negras; }
+	Sprite get_guanyador(string guanyador) {if (guanyador == "black") { return win_black; } return win_white; }
 private:
 
 	Moviment *mov;
 	int m_tauler[8][8];
 	int m_caselladiagx;
 	int m_caselladiagy;
-	int m_damasblancas;
-	int m_damasnegras;
+	int m_fitxes_blanques;
+	int m_fitxes_negras;
 	int Mov;
 	Sprite tablero;
 	Sprite piezablanca;
@@ -91,4 +91,6 @@ private:
 	Sprite turnoblanco;
 	Sprite turnonegro;
 	Sprite aviso;
+	Sprite win_white;
+	Sprite win_black;
 };

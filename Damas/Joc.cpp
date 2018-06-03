@@ -63,7 +63,7 @@ void joc()
 	//Inicialitza Part grafica
 	Screen jocLib(MIDAX, MIDAY);
 	Partida p;
-
+	
 	// AFEGIR CODI: Definició del grafic del fons
 	Sprite fons;
 	fons.create("data/tauler.png");
@@ -79,7 +79,6 @@ void joc()
 
 	int xMouse = 0;
 	int yMouse = 0;
-	
 	do
 	{
 		jocLib.processEvents();
@@ -89,18 +88,13 @@ void joc()
 			xMouse = Mouse_getX();
 			yMouse = Mouse_getY();
 		
-				p.processaClick(xMouse, yMouse);
+			p.processaClick(xMouse, yMouse);
 
-				if (p.getclic() == 2)
-				{
-					p.ferMoviment();
-					p.contador();
-				}
-
-			
-	
-			p.canviaTorn();		
-			
+			if (p.getclic() == 2)
+			{
+				p.ferMoviment();
+			}		
+			p.canviaTorn();
 		}
 
 		p.visualitza();
@@ -110,7 +104,8 @@ void joc()
 		// ***********************************************************************
 		// Sortim del bucle si pressionem ESC
 		// ***********************************************************************
-	} while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE) && (p.verificaFitxes() != false));
-
+	} while (!p.end_game() && !Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
+	Sprite missatge_guanyador = p.guanyador();
+	missatge_guanyador.draw(8, 8);
 
 }

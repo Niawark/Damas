@@ -26,8 +26,6 @@ void Partida:: inicialitza()
 	m_contadorblancas = 12;
 	m_contadornegras = 12;
 	m_captura = 0;
-	m_obj.getDamesblanques(m_contadordamasblancas);
-	m_obj.getDamesnegres(m_contadordamasnegras);
 }
 
 
@@ -142,7 +140,7 @@ int Partida::ferMoviment()
 }
 
 void Partida::canviaTorn()
-{
+{	
 	if ((m_siguiente_turno == true ))
 	{
 		if (m_torn_actual == TORN_BLANC)
@@ -173,47 +171,26 @@ void Partida::setClick() {
 	m_clic = 0;
 }
 
-void Partida::contador()
+bool Partida::end_game()
 {
-	if (m_captura == 2)
-	{
-		m_contadorblancas--;
+	if (m_obj.get_m_fitxes_negras() == 0 || m_obj.get_m_fitxes_blanques() == 0){
+		//printf("ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
+		return true;
 	}
-
-	if (m_captura==3)
-	{
-		m_contadornegras--;
-	}
-	if (m_captura == 5)
-	{
-		m_contadordamasblancas--;
-	}
-	if (m_captura == 6)
-	{
-		m_contadordamasnegras--;
-	}
-
-	m_captura = 0;
+	//printf("no ganas get_m_fitxes_negras => %d \n m_obj.get_m_fitxes_blanques()=> %d \n", m_obj.get_m_fitxes_negras(), m_obj.get_m_fitxes_blanques());
+	return false;
 }
 
-bool Partida::verificaFitxes()
+Sprite Partida::guanyador()
 {
-	///////cotadorblancas o contadornegras llega a 0 true, sino es mante en false;
-	if (m_contadornegras == 0&&m_contadordamasnegras==0)
+	if (m_obj.get_m_fitxes_negras() == 0)
 	{
 		printf("Ganan Blancas\n");
-		return false;
+		return m_obj.get_guanyador("white");
 	}
 	else
 	{
-		if (m_contadorblancas == 0&&m_contadordamasblancas==0)
-		{
-			printf("Ganan Negras\n");
-			return false;
-		}
-		else
-		{
-			return true;
-		}
+		printf("Ganan Negras\n");
+		return m_obj.get_guanyador("black");
 	}
 }

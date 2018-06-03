@@ -21,7 +21,7 @@ void Tauler::inicialitza()
 		}
 	}
 
-	for (int j = 1; j < 8; j += 2)
+	for (int j = 1; j < 4; j += 2)
 	{
 		//m_tauler[0][j] = 2;
 		//m_tauler[1][j - 1] = 2;
@@ -46,11 +46,15 @@ void Tauler::inicialitza()
 	piezanegra_dama_sel.create("data/dama_negra_sel.png");
 	turnoblanco.create("data/torn_blanc.png");
 	turnonegro.create("data/torn_negre.png");
+	win_white.create("data/ganan_white.png");
+	win_black.create("data/ganan_black.png");
 
 	m_caselladiagx = 0;
 	m_caselladiagy = 0;
-	m_damasblancas = 0;
-	m_damasnegras = 0;
+	m_fitxes_blanques = 2;
+	//m_fitxes_blanques = 12;
+	m_fitxes_negras = 2;
+	//m_fitxes_negras = 12;
 
 }
 
@@ -145,7 +149,6 @@ void Tauler::marcaCasella(int fila, int columna, int torn)
 int Tauler::processaMoviment(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn)
 {
 	bool move = false;
-	bool y;
 	int i = 0;
 	int aux = 0;
 	//////////////////////////////////////////////////////// MOVIMENT NORMAL
@@ -221,7 +224,6 @@ int Tauler::processaMoviment(int filaorigen, int columnaorigen, int filadesti, i
 	/////////////////////////////////////////////////////
 	return i;
 }
-
 
 void Tauler::dibuixa(int torn, bool missatge)
 {
@@ -313,6 +315,7 @@ void Tauler::dibuixa(int torn, bool missatge)
 		columna = INIPANTALLAY;
 	}
 }
+
 void Tauler::desmCasella(int fila, int columna, int torn)
 {
 	if ((m_tauler[fila - 1][columna - 1] == 22) && (torn == TORN_NEGRE))
@@ -345,6 +348,7 @@ void Tauler::desmCasella(int fila, int columna, int torn)
 		}
 	}
 }
+
 bool Tauler::movimentNormal(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn)
 {
 	bool move = false;
@@ -376,7 +380,6 @@ bool Tauler::movimentNormal(int filaorigen, int columnaorigen, int filadesti, in
 			{
 				m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 				m_tauler[filadesti - 1][columnadesti - 1] = 111;
-				m_damasblancas++;
 
 			}
 			else
@@ -393,7 +396,6 @@ bool Tauler::movimentNormal(int filaorigen, int columnaorigen, int filadesti, in
 				{
 					m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 					m_tauler[filadesti - 1][columnadesti - 1] = 222;
-					m_damasnegras++;
 				}
 				else
 				{
@@ -461,23 +463,22 @@ bool Tauler::movimentCaptura(int filaorigen, int columnaorigen, int filadesti, i
 		{
 			if (filadesti - 1 == 0)
 			{
-				if (direccio == 1)
+				if (direccio == 1)//convertir
 				{
 					m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 					m_tauler[filaorigen - 2][columnaorigen] = 0;
 					m_tauler[filadesti - 1][columnadesti - 1] = 111;
-					m_damasblancas++;
 				}
 				else
 				{
 					m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 					m_tauler[filaorigen - 2][columnaorigen - 2] = 0;
 					m_tauler[filadesti - 1][columnadesti - 1] = 111;
-					m_damasblancas++;
 				}
 			}
 			else
 			{
+				m_fitxes_negras--;
 				if (direccio == 1)
 				{
 					m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
@@ -496,25 +497,24 @@ bool Tauler::movimentCaptura(int filaorigen, int columnaorigen, int filadesti, i
 		{
 			if (torn == TORN_NEGRE)
 			{
-				if (filadesti - 1 == 7)
+				if (filadesti - 1 == 7)//convertir
 				{
 					if (direccio == 1)
 					{
 						m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 						m_tauler[filaorigen][columnaorigen] = 0;
 						m_tauler[filadesti - 1][columnadesti - 1] = 222;
-						m_damasnegras++;
 					}
 					else
 					{
 						m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 						m_tauler[filaorigen][columnaorigen - 2] = 0;
 						m_tauler[filadesti - 1][columnadesti - 1] = 222;
-						m_damasnegras++;
 					}
 				}
 				else
 				{
+					m_fitxes_blanques--;
 					if (direccio == 1)
 					{
 						m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
@@ -571,6 +571,7 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	bool move = false;
 	if (torn == TORN_NEGRE)
 	{
+		m_fitxes_blanques--;
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
 		m_tauler[filadesti - 1][columnadesti - 1] = 222;
@@ -578,6 +579,7 @@ bool Tauler::movimentCapturaDama(int filaorigen, int columnaorigen, int filadest
 	}
 	else
 	{
+		m_fitxes_negras--;
 		m_tauler[filaorigen - 1][columnaorigen - 1] = 0;
 		m_tauler[m_caselladiagx][m_caselladiagy] = 0;
 		m_tauler[filadesti - 1][columnadesti - 1] = 111;
@@ -603,78 +605,77 @@ int Tauler::IdentificaMovimentDama(int filaorigen, int columnaorigen, int filade
 
 	if (m_tauler[filadesti - 1][columnadesti - 1] == 0)
 	{
-		if (columnadesti - 1 < columnaorigen - 1)
-		{
-			//izquierda
-			if (m_tauler[filadesti][columnadesti] == 0)
+		if (filaorigen - 1 > filadesti - 1)
+		{//arriba
+			if (columnadesti - 1 < columnaorigen - 1)
 			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
+				//izquierda
+				if (m_tauler[filadesti][columnadesti] == 0)
 				{
-					x = 1;
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+					{
+						x = 1;
+					}
+				}
+
+				else if ((m_tauler[filadesti][columnadesti] / 111) != torn)
+				{
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+					{
+						x = 2;
+					}
 				}
 			}
-			else if ((m_tauler[filadesti][columnadesti] / 111) != torn)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
+			else {
+				//derecha
+				if (m_tauler[filadesti][columnadesti - 2] == 0)
 				{
-					x = 2;
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+					{
+						x = 5;
+					}
 				}
+				else if ((m_tauler[filadesti][columnadesti - 2] / 111) != torn)
+				{	
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+						{
+						x =		6;
+					}
+				}	
 			}
-		}
-		else {
-			//derecha
-			if (m_tauler[filadesti][columnadesti - 2] == 0)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
-					x = 5;
+		}	
+		else  //abajo
+		{	
+			if (columnadesti - 1 < columnaorigen - 1)
+			{	
+				//izquierda
+				if ((!origen_par && !desti_par) || (origen_par && desti_par)) {
+					if (m_tauler[filadesti - 2][columnadesti] == 0 || (m_tauler[filadesti - 2][columnadesti] / 1111) == torn)
+					{
+						x = 3;
+						
+					}
+					else if ((m_tauler[filadesti - 2][columnadesti] / 111) != torn)
+					{
+						x = 4;
+					}
 				}
-			}
-			else if ((m_tauler[filadesti][columnadesti - 2] / 111) != torn)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
-					x = 6;
-				}
-			}
-		}
-	}
-	else
-	{
-		//abajo
-		if (columnadesti - 1 < columnaorigen - 1)
-		{
-			//izquierda
-			if (m_tauler[filadesti - 2][columnadesti] == 0)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
-					x = 3;
-				}
-			}
-			else if ((m_tauler[filadesti - 2][columnadesti] / 111) != torn)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
-					x = 4;
-				}
-			}
-		}
-		else
-		{
-			//derecha
-			if (m_tauler[filadesti - 2][columnadesti - 2] == 0)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
-					x = 7;
-				}
-			}
-			else if ((m_tauler[filadesti - 2][columnadesti - 2] / 111) != torn)
-			{
-				if ((!origen_par && !desti_par) || (origen_par && desti_par))
-				{
+			}	
+			else
+			{//derecha
+				if (m_tauler[filadesti - 2][columnadesti - 2] == 0)
+				{	
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+					{
+						x =	7;
+					}	
+				}	
+				else if ((m_tauler[filadesti - 2][columnadesti - 2] / 111) != torn)
+					{
+					if ((!origen_par && !desti_par) || (origen_par && desti_par))
+					{	
 					x = 8;
+					}
 				}
 			}
 		}
@@ -726,7 +727,7 @@ bool Tauler::DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int 
 
 		if (aux == 5 || aux == 6)//arriba derecha
 		{
-			for (i = filadesti - 1,j = columnadesti - 1; i < filaorigen - 2; i++, j--)
+			for (i = filaorigen -2, j = columnaorigen; i >= filadesti - 1; i--, j++)
 			{
 				if (m_tauler[i][j] != 0)
 				{
@@ -772,15 +773,6 @@ bool Tauler::DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int 
 	}
 
 	return diagonalvalida;
-}
-
-void Tauler::getDamesblanques(int &x)
-{
-	x = m_damasblancas;
-}
-void Tauler::getDamesnegres(int &x)
-{
-	x = m_damasnegras;
 }
 
 int Tauler::lecturaMoviments()
