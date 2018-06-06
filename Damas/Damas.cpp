@@ -18,10 +18,11 @@ void main(int argc, char* argv[])
 	do {
 		printf("1.Partida normal\n");
 		printf("2.Guardar partida\n");
-		printf("3.Sortir\n");
+		printf("3.Cargar partida\n");
+		printf("4.Sortir\n");
 		opcio = _getch();
-	} while ((opcio < '1') || (opcio > '3'));
-	if (opcio != '3')
+	} while ((opcio < '1') || (opcio > '4'));
+	if (opcio != '4')
 		joc(opcio);
 
 	//Instruccio necesaria per poder incloure la llibreria i que trobi el main

@@ -59,7 +59,6 @@ void Tauler::inicialitza()
 	frame1.create("data/frame1.png");
 }
 
-
 bool Tauler::validaClick(int x, int y, int &fila, int &columna)
 {
 	bool valida = false;
@@ -805,12 +804,14 @@ int Tauler::lecturaMoviments()
 	return nMov;
 }
 
-void Tauler::iniciautoMoviments(int i, int torn)
+void Tauler::iniciautoMoviments(int i)
 {
-
+	int torn = 1;
+	if (i % 2 == 0) {
+		torn = 2;
+	}
 	int filaorigen = mov[i].get_filaorigen();
 	int columnaorigen = mov[i].get_columnaorigen();
-
 	int filadesti = mov[i].get_filadesti();
 	int columnadesti = mov[i].get_columnadesti();
 
@@ -820,8 +821,6 @@ void Tauler::iniciautoMoviments(int i, int torn)
 	}
 
 }
-
-
 
 bool Tauler::end_game()
 {

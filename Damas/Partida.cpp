@@ -2,7 +2,7 @@
 #include "Partida.h"
 #include "Tauler.h"
 #include "Joc.h"
-
+#include <Windows.h>
 
 Partida::Partida()
 {
@@ -169,4 +169,18 @@ int Partida::getclic()
 
 void Partida::setClick() {
 	m_clic = 0;
+}
+
+void Partida::fer_moviments() {
+	int i = 99;
+	int nMov = m_obj.lecturaMoviments();
+	//for (int i = 0; i < nMov; i++) {
+
+	m_obj.iniciautoMoviments(nMov - i);
+	//Tauler.dibuixa(torn, error, fin);
+	canviaTorn();
+
+	Sleep(2000);
+	i--;
+	//}
 }

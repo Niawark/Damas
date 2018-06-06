@@ -22,17 +22,20 @@ void getPosMatrix(int x, int y, int(&fila), int(&columna))
 
 void joc(char x)
 {
+	Partida p;
 	switch (x)
 	{
 	case '1':
 		joc();
 		break;
 	case '2':
-		////falta guardar
 		break;
 	case '3':
-		!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE);
+		p.fer_moviments();
 		break;
+	case '4':
+	!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE);
+	break;
 	}
 
 }
