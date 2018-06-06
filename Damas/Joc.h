@@ -13,7 +13,7 @@
 int aleatori(int min, int max, int pas);
 
 void joc();
-
+void joc(char x);
 void getPosMatrix(int x, int y, int(&fila), int(&columna));
 
 /*----- END --------------*/

@@ -15,8 +15,6 @@ public:
 	int ferMoviment();
 	void setClick();
 	bool m_siguiente_turno;
-	bool verificaFitxes();
-	void contador();
 	
    
 private:

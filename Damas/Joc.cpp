@@ -20,6 +20,23 @@ void getPosMatrix(int x, int y, int(&fila), int(&columna))
 	printf("Columna Fila %d %d \n", fila, columna);
 }
 
+void joc(char x)
+{
+	switch (x)
+	{
+	case '1':
+		joc();
+		break;
+	case '2':
+		////falta guardar
+		break;
+	case '3':
+		!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE);
+		break;
+	}
+
+}
+
 void Pintartaulell(int tauler[8][8])
 {
 	Sprite pecablanca;
@@ -58,72 +75,27 @@ void Pintartaulell(int tauler[8][8])
 void joc()
 {
 	// ********************************************
-	// Inicialització de la part gràfica del joc
+	// InicialitzaciÃ³ de la part grÃ fica del joc
 	// *******************************************
 	//Inicialitza Part grafica
 	Screen jocLib(MIDAX, MIDAY);
+	Partida p;
 	
-	//Mostrem finestra
-	jocLib.show();
-	// AFEGIR CODI: Definició del grafic del fons
+	// AFEGIR CODI: DefiniciÃ³ del grafic del fons
 	Sprite fons;
 	fons.create("data/tauler.png");
-	// AFEGIR CODI: Definició i inicialització de la matriu que representarà
-	// les caselles al tauler
-	Tauler t;
-	Partida p;
-	//t.inicialitza();
+
+	//Mostrem finestra
+	jocLib.show();
+	
+	
+	// AFEGIR CODI: inicialitzaciÃ³ de la partida
 	p.inicialitza();
 	
-	// Variables d'ajuda per agafar posició ratolí
+	// Variables d'ajuda per agafar posiciÃ³ ratolÃ­
 
 	int xMouse = 0;
 	int yMouse = 0;
-	/*
-	int filaorigen = 0;
-	int columnaorigen = 0;
-	int filadesti = 0;
-	int columnadesti = 0;
-	int torn = 1;
-	int clic = 0;
-	bool missatge = false;
-	*/
-
-	/*
-	do 
-	{
-		jocLib.processEvents();
-
-		if (Mouse_getButLeft())
-		{
-			xMouse = Mouse_getX();
-			yMouse = Mouse_getY();
-
-			if (clic == 0)
-			{
-				if ((t.validaClick(xMouse, yMouse, filaorigen, columnaorigen) == true) && (t.checkOrigenValid(filaorigen, columnaorigen, torn) == true))
-				{
-					t.marcaCasella(filaorigen, columnaorigen, torn);
-					clic++;
-				}
-			}
-			else
-			{
-				if (clic == 1)
-				{
-					if (t.validaClick(xMouse, yMouse, filadesti, columnadesti) == true)
-					{
-						t.processaMoviment(filaorigen, columnaorigen, filadesti, columnadesti, torn);
-						clic = 0;
-					}
-					else
-					{
-						clic = 0;
-					}
-				}
-			}
-		}
-		*/
 	do
 	{
 		jocLib.processEvents();
@@ -132,25 +104,16 @@ void joc()
 		{
 			xMouse = Mouse_getX();
 			yMouse = Mouse_getY();
-			//do {
-				p.processaClick(xMouse, yMouse);
+		
+			p.processaClick(xMouse, yMouse);
 
-				//cout << p.getclic()<<endl;
-			//} while (p.getclic() < 1);
-				if (p.getclic() == 2)
-				{
-					p.ferMoviment();
-					p.contador();
-				}
-
-			
-			//p.setClick();
-			p.canviaTorn();		
-			
+			if (p.getclic() == 2)
+			{
+				p.ferMoviment();
+			}		
+			p.canviaTorn();
 		}
 
-		// Pintem fons i peces
-		//t.dibuixa(torn, missatge);
 		p.visualitza();
 		
 		// Actualitza la pantalla
@@ -158,7 +121,5 @@ void joc()
 		// ***********************************************************************
 		// Sortim del bucle si pressionem ESC
 		// ***********************************************************************
-	} while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE) && (p.verificaFitxes() != false));
-
-
+	} while (!Keyboard_GetKeyTrg(KEYBOARD_ESCAPE));
 }
