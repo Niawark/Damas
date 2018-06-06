@@ -1,11 +1,19 @@
 ﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(368,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   Tauler.cpp
-c:\users\anaag\desktop\practica mp\damasalumnos\damas\tauler.cpp(148): warning C4101: 'y': variable local sin referencia
-  Generando código...
-  Compilando...
+c:\users\usuario\desktop\practica mp - copia\damasalumnos\damas\tauler.cpp(148): warning C4101: 'y': variable local sin referencia
   Partida.cpp
   Moviment.cpp
+  video.cpp
+  stb_vorbis.cpp
+  sprites.cpp
+  sound.cpp
+  mouse.cpp
+  keyboard.cpp
+  image_png.cpp
+  debug.cpp
   Joc.cpp
+  Damas.cpp
+c:\users\usuario\desktop\practica mp - copia\damasalumnos\damas\damas.cpp(21): warning C4551: la llamada a la función no tiene lista de argumentos
   Generando código...
-  Damas.vcxproj -> C:\Users\anaag\Desktop\Practica MP\DamasAlumnos\\Program\Damas.exe
-  Damas.vcxproj -> C:\Users\anaag\Desktop\Practica MP\DamasAlumnos\\Program\Damas.pdb (Full PDB)
+  Damas.vcxproj -> C:\Users\USUARIO\Desktop\Practica MP - copia\DamasAlumnos\\Program\Damas.exe
+  Damas.vcxproj -> C:\Users\USUARIO\Desktop\Practica MP - copia\DamasAlumnos\\Program\Damas.pdb (Full PDB)
