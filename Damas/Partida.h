@@ -15,7 +15,7 @@ public:
 	int ferMoviment();
 	void setClick();
 	bool m_siguiente_turno;
-	
+	void fer_moviments();
    
 private:
 	Tauler m_obj;

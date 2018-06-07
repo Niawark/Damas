@@ -66,7 +66,7 @@ public:
 	int IdentificaMovimentDama(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn);
 	bool DiagonalDama(int filaorigen, int columnaorigen, int filadesti, int columnadesti, int torn);
 	int lecturaMoviments();
-	void iniciautoMoviments(int i, int torn);
+	void iniciautoMoviments(int i);
 	int get_m_fitxes_blanques() { return m_fitxes_blanques; }
 	int get_m_fitxes_negras() { return m_fitxes_negras; }
 	bool end_game(), guanyador();

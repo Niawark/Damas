@@ -2,7 +2,7 @@
 #include "Partida.h"
 #include "Tauler.h"
 #include "Joc.h"
-
+#include <Windows.h>
 
 Partida::Partida()
 {
@@ -77,9 +77,7 @@ void Partida::processaClick(int xMouse, int yMouse)
 
 int Partida::ferMoviment()
 {
- 	int x = 0;
-
-	x = m_obj.processaMoviment(m_filaorigen, m_columnaorigen, m_filadesti, m_columnadesti, m_torn_actual);
+ 	int x = m_obj.processaMoviment(m_filaorigen, m_columnaorigen, m_filadesti, m_columnadesti, m_torn_actual);
 
 	if (x == 1)
 	{
@@ -169,4 +167,18 @@ int Partida::getclic()
 
 void Partida::setClick() {
 	m_clic = 0;
+}
+
+void Partida::fer_moviments() {
+	int i = 99;
+	int nMov = m_obj.lecturaMoviments();
+	//for (int i = 0; i < nMov; i++) {
+
+	m_obj.iniciautoMoviments(nMov - i);
+	//Tauler.dibuixa(torn, error, fin);
+	canviaTorn();
+
+	Sleep(2000);
+	i--;
+	//}
 }
