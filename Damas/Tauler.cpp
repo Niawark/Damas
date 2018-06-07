@@ -317,11 +317,6 @@ void Tauler::dibuixa(int torn, bool missatge)
 			columna = INIPANTALLAY;
 		}
 	}
-	else {
-		int n = 0;
-		while (n <= 1000000) n++;
-		return_to_menu();
-	}
 }
 
 void Tauler::desmCasella(int fila, int columna, int torn)
@@ -616,8 +611,7 @@ int Tauler::IdentificaMovimentDama(int filaorigen, int columnaorigen, int filade
 		if (filaorigen - 1 > filadesti - 1)
 		{//arriba
 			if (columnadesti - 1 < columnaorigen - 1)
-			{
-				//izquierda
+			{//izquierda
 				if (m_tauler[filadesti][columnadesti] == 0)
 				{
 					if ((!origen_par && !desti_par) || (origen_par && desti_par))
